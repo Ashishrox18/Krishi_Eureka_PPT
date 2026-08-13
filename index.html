@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishi Era — Investor Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:   #1a4731;
+      --green2:  #22603f;
+      --gold:    #c9a84c;
+      --gold2:   #e8c97a;
+      --cream:   #faf7f0;
+      --text:    #1a1a1a;
+      --muted:   #5a5a5a;
+      --border:  #e0ddd6;
+      --white:   #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--green);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.18);
+    }
+    .nav-brand { color: var(--gold2); font-weight: 800; font-size: 1.1rem; letter-spacing: 0.06em; }
+    .nav-brand span { color: #fff; font-weight: 400; font-size: 0.8rem; margin-left: 0.5rem; opacity: 0.7; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.8rem; font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold2); }
+    .btn-dl {
+      background: var(--gold); color: var(--green);
+      padding: 0.45rem 1.1rem; border-radius: 6px;
+      font-weight: 700; font-size: 0.78rem; text-decoration: none;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .btn-dl:hover { background: var(--gold2); color: var(--green); }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, var(--green) 0%, #0f2e1f 100%);
+      color: white; padding: 5rem 2rem 4rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.5);
+      color: var(--gold2); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.3rem 0.9rem; border-radius: 20px; margin-bottom: 1.5rem;
+      background: rgba(201,168,76,0.08);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800; line-height: 1.15; max-width: 760px;
+    }
+    .hero h1 span { color: var(--gold2); }
+    .hero-sub {
+      margin-top: 1.2rem; color: rgba(255,255,255,0.7);
+      font-size: 1rem; max-width: 580px; line-height: 1.7;
+    }
+    .hero-links { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; justify-content: center; }
+    .btn-primary {
+      background: var(--gold); color: var(--green);
+      padding: 0.75rem 1.8rem; border-radius: 8px;
+      font-weight: 700; font-size: 0.88rem; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold2); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.35); color: white;
+      padding: 0.75rem 1.8rem; border-radius: 8px;
+      font-weight: 600; font-size: 0.88rem; text-decoration: none;
+      transition: border-color 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold2); color: var(--gold2); }
+
+    /* ── STATS ROW ── */
+    .stats {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: var(--white);
+    }
+    .stat-item {
+      padding: 1.8rem 1.5rem; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-size: 1.9rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.3rem; font-weight: 500; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 4rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-tag {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800; color: var(--green); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-desc { color: var(--muted); font-size: 0.93rem; max-width: 640px; margin-bottom: 2.5rem; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* ── CARDS ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.8rem;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+    .card-num {
+      font-size: 2rem; font-weight: 900; color: var(--green);
+      line-height: 1; margin-bottom: 0.6rem;
+    }
+    .card-title { font-weight: 700; font-size: 0.95rem; color: var(--text); margin-bottom: 0.5rem; }
+    .card-body { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+    .card-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: rgba(26,71,49,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .card-icon svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+    /* ── PROBLEM ── */
+    .problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .problem-item {
+      background: var(--white); border: 1px solid var(--border);
+      border-left: 4px solid var(--gold); border-radius: 10px;
+      padding: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;
+    }
+    .problem-stat { font-size: 1.6rem; font-weight: 900; color: var(--green); }
+    .problem-title { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+    .problem-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── MARKET ── */
+    .market-funnels { display: flex; gap: 2rem; flex-wrap: wrap; align-items: flex-end; }
+    .funnel-block {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem 2rem; text-align: center;
+      flex: 1; min-width: 180px;
+    }
+    .funnel-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .funnel-num { font-size: 2.2rem; font-weight: 900; }
+    .funnel-sub { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ── BUSINESS MODEL ── */
+    .revenue-table { width: 100%; border-collapse: collapse; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    .revenue-table th { background: var(--green); color: var(--gold2); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.9rem 1.2rem; text-align: left; }
+    .revenue-table td { padding: 0.85rem 1.2rem; font-size: 0.85rem; border-top: 1px solid var(--border); background: var(--white); }
+    .revenue-table tr:hover td { background: rgba(26,71,49,0.03); }
+    .tag-pill { display: inline-block; background: rgba(26,71,49,0.08); color: var(--green); font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 20px; }
+
+    /* ── FINANCIALS ── */
+    .fin-bars { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1rem; }
+    .fin-row { display: flex; align-items: center; gap: 1rem; }
+    .fin-year { font-size: 0.8rem; font-weight: 700; color: var(--text); width: 60px; flex-shrink: 0; }
+    .fin-bar-wrap { flex: 1; background: rgba(26,71,49,0.08); border-radius: 6px; height: 36px; overflow: hidden; position: relative; }
+    .fin-bar { height: 100%; background: var(--green); border-radius: 6px; display: flex; align-items: center; padding-left: 0.8rem; transition: width 0.8s ease; }
+    .fin-bar-val { font-size: 0.8rem; font-weight: 700; color: var(--gold2); }
+
+    /* ── TEAM ── */
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+    .team-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.8rem; text-align: center;
+    }
+    .team-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(26,71,49,0.1); margin: 0 auto 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; font-weight: 900; color: var(--green);
+      overflow: hidden;
+    }
+    .team-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .team-name { font-weight: 800; font-size: 0.95rem; color: var(--text); }
+    .team-role { font-size: 0.78rem; color: var(--gold); font-weight: 600; margin-top: 0.2rem; }
+    .team-bio  { font-size: 0.78rem; color: var(--muted); margin-top: 0.6rem; line-height: 1.5; }
+
+    /* ── ASK ── */
+    .ask-box {
+      background: linear-gradient(135deg, var(--green), #0f2e1f);
+      border-radius: 16px; padding: 3rem;
+      color: white; display: grid;
+      grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+    }
+    .ask-amount { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 800; color: var(--gold2); line-height: 1; }
+    .ask-sub { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-top: 0.5rem; }
+    .use-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .use-row { display: flex; align-items: center; gap: 0.8rem; }
+    .use-bar-wrap { flex: 1; background: rgba(255,255,255,0.12); border-radius: 4px; height: 8px; overflow: hidden; }
+    .use-bar { height: 100%; background: var(--gold); border-radius: 4px; }
+    .use-label { font-size: 0.8rem; color: rgba(255,255,255,0.8); width: 140px; flex-shrink: 0; }
+    .use-pct { font-size: 0.8rem; font-weight: 700; color: var(--gold2); width: 36px; text-align: right; flex-shrink: 0; }
+
+    /* ── LINKS SECTION ── */
+    .links-row { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .link-card {
+      display: flex; align-items: center; gap: 0.7rem;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.9rem 1.2rem;
+      text-decoration: none; color: var(--text); transition: border-color 0.2s, box-shadow 0.2s;
+      font-size: 0.85rem; font-weight: 600;
+    }
+    .link-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(0,0,0,0.07); color: var(--green); }
+    .link-card svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 2; flex-shrink: 0; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green); color: rgba(255,255,255,0.65);
+      text-align: center; padding: 1.5rem 2rem;
+      font-size: 0.78rem; border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    footer a { color: var(--gold2); text-decoration: none; }
+
+    /* ── CREDENTIALS ── */
+    .cred-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .cred-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1rem 1.2rem;
+    }
+    .cred-role { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; }
+    .cred-line { font-size: 0.8rem; color: var(--muted); line-height: 1.6; }
+    .cred-line strong { color: var(--text); font-weight: 600; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .ask-box { grid-template-columns: 1fr; gap: 2rem; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stats { border-top: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">KRISHI ERA <span>Investor Deck 2025</span></div>
+  <div class="nav-links">
+    <a href="#problem">Problem</a>
+    <a href="#solution">Solution</a>
+    <a href="#market">Market</a>
+    <a href="#model">Business Model</a>
+    <a href="#financials">Financials</a>
+    <a href="#team">Team</a>
+    <a href="#ask">The Ask</a>
+    <a href="Krishi_Era_Ashish_PPT.pdf" download class="btn-dl">Download PDF</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">IIT Bombay Eureka 2025 — Agri-Tech Innovation</div>
+  <h1>India's AI-Orchestrated<br/><span>Rural Resource Intelligence</span> Platform</h1>
+  <p class="hero-sub">
+    Krishi Era connects farmers, buyers, transporters, and storage providers through AI — optimizing
+    resource planning, produce sales, and rural livelihoods without owning physical assets.
+  </p>
+  <div class="hero-links">
+    <a href="https://krishi-era-ai-updj.vercel.app/login" target="_blank" class="btn-primary">Explore Live Platform</a>
+    <a href="Krishi_Era_Ashish_PPT.pdf" download class="btn-outline">Download Pitch Deck (PDF)</a>
+  </div>
+  <!-- Cover image from Slide 1 -->
+  <div style="margin-top:2.5rem; width:100%; max-width:900px; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); box-shadow:0 20px 60px rgba(0,0,0,0.4);">
+    <img src="images/image3.jpg" alt="Krishi Era Platform" style="width:100%; display:block; object-fit:cover; max-height:460px;" onerror="this.style.display='none'" />
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">92,000 Cr</div>
+    <div class="stat-label">Post-harvest loss (ICAR)</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">30–50%</div>
+    <div class="stat-label">Farm-gate price volatility</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">146M</div>
+    <div class="stat-label">Small & marginal farmers</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">59.26%</div>
+    <div class="stat-label">Wastewater untreated (FAO)</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1:65</div>
+    <div class="stat-label">Extension officer ratio</div>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="section-tag">The Problem</div>
+  <div class="section-title">India's Agriculture is Structurally Broken</div>
+  <p class="section-desc">Four systemic failures costing farmers, buyers, and the environment — simultaneously.</p>
+  <div class="problem-grid">
+    <div class="problem-item">
+      <div class="problem-stat">₹92,000 Cr</div>
+      <div class="problem-title">Post-Harvest Losses Every Year</div>
+      <div class="problem-desc">Lack of cold chain, market linkage, and price intelligence destroys value before it reaches consumers. Source: ICAR.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-stat">30–50%</div>
+      <div class="problem-title">Farm-Gate Price Volatility</div>
+      <div class="problem-desc">Farmers sell at distress prices due to information asymmetry. Middlemen capture 40–60% of consumer price.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-stat">280 mg/L</div>
+      <div class="problem-title">Agricultural Water COD — Near Industrial Levels</div>
+      <div class="problem-desc">Our Karnataka field survey of 4 locations confirmed agricultural wastewater COD is only 5.4% below industrial effluent (296 mg/L). Industrial contamination is migrating into farms.</div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-stat">59.26%</div>
+      <div class="problem-title">Agricultural Wastewater Untreated</div>
+      <div class="problem-desc">No affordable, decentralised treatment solution exists for smallholder farms. Existing industrial solutions are cost-prohibitive at the farm level. Source: FAO SOFA 2020.</div>
+    </div>
+  </div>
+  <!-- Problem visuals from Slide 2 & 3 -->
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem;">
+    <img src="images/image6.jpg" alt="Water quality issue" style="width:100%; height:260px; border-radius:10px; object-fit:cover; border:1px solid var(--border);" onerror="this.style.display='none'" />
+    <img src="images/image7.jpg" alt="Farm field context" style="width:100%; height:260px; border-radius:10px; object-fit:cover; border:1px solid var(--border);" onerror="this.style.display='none'" />
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SOLUTION -->
+<section class="section" id="solution" style="background: #f5f2ea;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-tag">The Solution</div>
+    <div class="section-title">Four Integrated Layers. One Platform.</div>
+    <p class="section-desc">Krishi Era is a neutral intelligence layer — not an asset owner — connecting the entire rural ecosystem through AI, IoT, and biotechnology.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+        </div>
+        <div class="card-title">IoT Water Intelligence</div>
+        <div class="card-body">ESP32 microcontroller + 6-parameter sensor array (COD, BOD, pH, Turbidity, Conductivity, TSS). Real-time water quality monitoring with mobile alert system. BOM cost: ~₹1,350/unit.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="card-title">Recombinant Microalgae Biotech</div>
+        <div class="card-body">Proprietary microalgae strains engineered for agricultural wastewater biosorption. Dual-use output: wastewater treatment + algae biomass sold as organic fertiliser at ₹400/kg.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10H2A10 10 0 0 1 12 2z"/><path d="M2 12a10 10 0 0 0 10 10"/><path d="M12 22a10 10 0 0 0 10-10"/></svg>
+        </div>
+        <div class="card-title">Gemini / Vertex AI Engine</div>
+        <div class="card-body">AI-powered crop planning, real-time market price intelligence, automated selling strategy, and demand forecasting. Personalised advisory in 12 regional languages.</div>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="card-title">7-Stakeholder Marketplace</div>
+        <div class="card-body">Farmers, buyers, transporters, storage providers, input suppliers, FPOs, and government — all on one neutral platform. Zero asset ownership. 2–4% transaction commission model.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:2.5rem; padding:1.5rem; background:var(--white); border:1px solid var(--border); border-radius:12px;">
+      <!-- Live prototype photos from Slide 6 — only real photos (14-17, 20 are actual photos) -->
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); margin-bottom:1rem;">Live Prototype &amp; Field Deployment</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+        <img src="images/image14.jpg" alt="Live Prototype Unit" style="width:100%; height:280px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+        <img src="images/image15.jpg" alt="Prototype in field" style="width:100%; height:280px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; margin-bottom:1.5rem;">
+        <img src="images/image16.jpg" alt="Field Deployment" style="width:100%; height:200px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+        <img src="images/image17.jpg" alt="Sensor Assembly" style="width:100%; height:200px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+        <img src="images/image20.jpg" alt="System Setup" style="width:100%; height:200px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+      </div>
+      <!-- Platform Snapshots from Slide 7 -->
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); margin-bottom:1rem; border-top:1px solid var(--border); padding-top:1.5rem;">Platform Screenshots</div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+        <img src="images/image21.jpg" alt="Farmer Dashboard" style="width:100%; height:260px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+        <img src="images/image22.jpg" alt="Buyer Dashboard" style="width:100%; height:260px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem;">
+        <img src="images/image23.jpg" alt="Transporter Dashboard" style="width:100%; height:200px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+        <img src="images/image24.jpg" alt="Storage Dashboard" style="width:100%; height:200px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+        <img src="images/image25.jpg" alt="AI Advisory" style="width:100%; height:200px; border-radius:10px; border:1px solid var(--border); object-fit:cover;" onerror="this.style.display='none'" />
+      </div>
+    </div>
+
+    <div style="margin-top:2rem; padding:1.5rem; background:var(--white); border:1px solid var(--border); border-radius:12px;">
+      <div style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--gold); margin-bottom:0.8rem;">Live Platform</div>
+      <p style="font-size:0.85rem; color:var(--muted); margin-bottom:1rem;">Explore all 4 dashboards (Farmer, Buyer, Transporter, Storage) using the test accounts below.</p>
+      <div class="cred-grid">
+        <div class="cred-card">
+          <div class="cred-role">Farmer</div>
+          <div class="cred-line"><strong>Email:</strong> farmer@gmail.com</div>
+          <div class="cred-line"><strong>Password:</strong> 123456</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-role">Buyer</div>
+          <div class="cred-line"><strong>Email:</strong> buyer@gmail.com</div>
+          <div class="cred-line"><strong>Password:</strong> 123456</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-role">Transporter</div>
+          <div class="cred-line"><strong>Email:</strong> transporter@gmail.com</div>
+          <div class="cred-line"><strong>Password:</strong> 123456</div>
+        </div>
+        <div class="cred-card">
+          <div class="cred-role">Storage Provider</div>
+          <div class="cred-line"><strong>Email:</strong> storage@gmail.com</div>
+          <div class="cred-line"><strong>Password:</strong> 123456</div>
+        </div>
+      </div>
+      <div style="margin-top:1.2rem;">
+        <a href="https://krishi-era-ai-updj.vercel.app/login" target="_blank" class="btn-primary" style="display:inline-block;">Access Live Platform</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- MARKET -->
+<section class="section" id="market">
+  <div class="section-tag">Market Opportunity</div>
+  <div class="section-title">A ₹15 Lakh Crore Addressable Market</div>
+  <p class="section-desc">India's agri-tech, water-tech, and rural marketplace converge into one of the largest untapped opportunities globally.</p>
+  <div class="market-funnels">
+    <div class="funnel-block" style="border-top: 4px solid var(--green);">
+      <div class="funnel-label" style="color:var(--green);">TAM</div>
+      <div class="funnel-num" style="color:var(--green);">₹15L Cr</div>
+      <div class="funnel-sub">India AgriTech + WaterTech + Rural Marketplace (2025)</div>
+    </div>
+    <div class="funnel-block" style="border-top: 4px solid var(--gold);">
+      <div class="funnel-label" style="color:var(--gold);">SAM</div>
+      <div class="funnel-num" style="color:var(--gold);">₹2.8L Cr</div>
+      <div class="funnel-sub">South India — Karnataka, Andhra, Tamil Nadu, Maharashtra</div>
+    </div>
+    <div class="funnel-block" style="border-top: 4px solid #e05555;">
+      <div class="funnel-label" style="color:#e05555;">SOM</div>
+      <div class="funnel-num" style="color:#e05555;">₹840 Cr</div>
+      <div class="funnel-sub">Year 3 target — 3,000 farmers, 200 FPOs, 50 buyers</div>
+    </div>
+  </div>
+  <div style="margin-top:2rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem;">
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.2rem;">
+      <div style="font-size:0.75rem; color:var(--muted); font-weight:600; margin-bottom:0.3rem;">Phase 1 — Pilot</div>
+      <div style="font-weight:800; color:var(--green);">CFTRI + Karnataka</div>
+      <div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">50 farmers, 5 buyers, CFTRI partnership, Government IoT pilot</div>
+    </div>
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.2rem;">
+      <div style="font-size:0.75rem; color:var(--muted); font-weight:600; margin-bottom:0.3rem;">Phase 2 — Scale</div>
+      <div style="font-weight:800; color:var(--green);">FPO + State Govt</div>
+      <div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">200 FPOs, 5 state empanelment, B2G licensing, ₹80K grant deployed</div>
+    </div>
+    <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1.2rem;">
+      <div style="font-size:0.75rem; color:var(--muted); font-weight:600; margin-bottom:0.3rem;">Phase 3 — Expand</div>
+      <div style="font-weight:800; color:var(--green);">India + SEA + Africa</div>
+      <div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">Series A, international licensing, carbon credit marketplace</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- BUSINESS MODEL -->
+<section class="section" id="model" style="background:#f5f2ea;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-tag">Business Model</div>
+    <div class="section-title">7 Revenue Streams — Asset-Light</div>
+    <p class="section-desc">Multiple monetisation layers ensure resilience. Core engine: Razor-Blade (IoT hardware at cost, algae refills at margin) + SaaS + Marketplace commission.</p>
+    <table class="revenue-table">
+      <thead>
+        <tr>
+          <th>Revenue Stream</th>
+          <th>Pricing</th>
+          <th>Model</th>
+          <th>Gross Margin</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>IoT Hardware (Razor-Blade)</strong></td>
+          <td>₹1,350 at cost</td>
+          <td><span class="tag-pill">Hardware</span></td>
+          <td>~10%</td>
+        </tr>
+        <tr>
+          <td><strong>Microalgae Refill Subscription</strong></td>
+          <td>₹400/kg · monthly</td>
+          <td><span class="tag-pill">Subscription</span></td>
+          <td>~50%</td>
+        </tr>
+        <tr>
+          <td><strong>AI Platform SaaS</strong></td>
+          <td>₹499–₹1,999/month</td>
+          <td><span class="tag-pill">SaaS</span></td>
+          <td>~75%</td>
+        </tr>
+        <tr>
+          <td><strong>Marketplace Commission</strong></td>
+          <td>2–4% per transaction</td>
+          <td><span class="tag-pill">Commission</span></td>
+          <td>~80%</td>
+        </tr>
+        <tr>
+          <td><strong>ESG Data Dashboard</strong></td>
+          <td>₹25,000/year (B2B)</td>
+          <td><span class="tag-pill">B2B SaaS</span></td>
+          <td>~85%</td>
+        </tr>
+        <tr>
+          <td><strong>Government Licensing</strong></td>
+          <td>₹5–15L/district</td>
+          <td><span class="tag-pill">B2G</span></td>
+          <td>~70%</td>
+        </tr>
+        <tr>
+          <td><strong>Carbon Credit API</strong></td>
+          <td>Revenue share</td>
+          <td><span class="tag-pill">Platform</span></td>
+          <td>~90%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- COMPETITIVE -->
+<section class="section" id="competitive">
+  <div class="section-tag">Competitive Landscape</div>
+  <div class="section-title">Uniquely Positioned at the Intersection</div>
+  <p class="section-desc">No existing player combines AI crop intelligence, IoT water monitoring, microalgae biotech, and a multi-stakeholder marketplace in one platform.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-title">Precision Agri (Fasal, Cropin, CropX)</div>
+      <div class="card-body">Focus on crop monitoring only. No water treatment, no marketplace, no biotech layer. B2B SaaS with high CAC.</div>
+      <div style="margin-top:0.8rem; font-size:0.75rem; color:var(--gold); font-weight:700;">Our edge: Full-stack + biotech</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Marketplaces (DeHaat, Ninjacart, WayCool)</div>
+      <div class="card-body">Marketplace-only plays. No water intelligence, no IoT, require physical asset ownership. High logistics cost.</div>
+      <div style="margin-top:0.8rem; font-size:0.75rem; color:var(--gold); font-weight:700;">Our edge: Zero asset ownership</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Water Treatment (Suez, BioRock)</div>
+      <div class="card-body">Industrial scale only. Cost-prohibitive for smallholder farms (₹50L+ capex). No AI or marketplace integration.</div>
+      <div style="margin-top:0.8rem; font-size:0.75rem; color:var(--gold); font-weight:700;">Our edge: ₹1,350 decentralised IoT</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Krishi Era</div>
+      <div class="card-body">AI + IoT + Microalgae Biotech + 7-stakeholder marketplace. Asset-light. Dual revenue from wastewater (treatment + biomass). Patent-pending technology.</div>
+      <div style="margin-top:0.8rem; font-size:0.75rem; color:var(--green); font-weight:700;">Unique position — no direct competitor</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- FINANCIALS -->
+<section class="section" id="financials" style="background:#f5f2ea;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-tag">Financial Projections</div>
+    <div class="section-title">Path to Profitability — Year 4</div>
+    <p class="section-desc">Conservative bottom-up projections based on Karnataka pilot data. Break-even at 1 year 4 months. ~50% blended gross margin.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start;">
+      <div>
+        <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:1rem;">Annual Revenue (₹ Lakhs)</div>
+        <div class="fin-bars">
+          <div class="fin-row">
+            <div class="fin-year">Year 1</div>
+            <div class="fin-bar-wrap">
+              <div class="fin-bar" style="width:8%"><span class="fin-bar-val">₹18L</span></div>
+            </div>
+          </div>
+          <div class="fin-row">
+            <div class="fin-year">Year 2</div>
+            <div class="fin-bar-wrap">
+              <div class="fin-bar" style="width:28%"><span class="fin-bar-val">₹64L</span></div>
+            </div>
+          </div>
+          <div class="fin-row">
+            <div class="fin-year">Year 3</div>
+            <div class="fin-bar-wrap">
+              <div class="fin-bar" style="width:65%"><span class="fin-bar-val">₹148L</span></div>
+            </div>
+          </div>
+          <div class="fin-row">
+            <div class="fin-year">Year 4</div>
+            <div class="fin-bar-wrap">
+              <div class="fin-bar" style="width:100%"><span class="fin-bar-val">₹228L</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:1rem;">Key Metrics</div>
+        <div style="display:flex; flex-direction:column; gap:0.8rem;">
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.85rem; color:var(--muted);">Break-even</span>
+            <span style="font-weight:800; color:var(--green);">Month 16</span>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.85rem; color:var(--muted);">Blended Gross Margin</span>
+            <span style="font-weight:800; color:var(--green);">~50%</span>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.85rem; color:var(--muted);">CAC (FPO channel)</span>
+            <span style="font-weight:800; color:var(--green);">₹2,400</span>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.85rem; color:var(--muted);">LTV (3-year farmer)</span>
+            <span style="font-weight:800; color:var(--green);">₹28,000</span>
+          </div>
+          <div style="background:var(--white); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:0.85rem; color:var(--muted);">LTV:CAC Ratio</span>
+            <span style="font-weight:800; color:var(--green);">11.7x</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ESG -->
+<section class="section" id="esg">
+  <div class="section-tag">Impact & ESG</div>
+  <div class="section-title">Measurable Social and Environmental Returns</div>
+  <p class="section-desc">Aligned with UN SDGs 2, 6, 8, 12, and 13. Validated by academic and government partners.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="card-num">3,000+</div>
+      <div class="card-title">Farmers impacted by Year 3</div>
+      <div class="card-body">Income increase of 25–40% through better price discovery, reduced post-harvest loss, and direct buyer linkage.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">280 mg/L</div>
+      <div class="card-title">COD reduced to &lt;50 mg/L</div>
+      <div class="card-body">Microalgae biosorption treatment reduces agricultural wastewater COD from 280 mg/L to below WHO safe discharge levels.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">SDG 2,6,8,12,13</div>
+      <div class="card-title">UN Sustainable Development Goals</div>
+      <div class="card-body">Zero Hunger, Clean Water, Decent Work, Responsible Consumption, Climate Action — directly addressed by the platform.</div>
+    </div>
+    <div class="card">
+      <div class="card-num">₹80K</div>
+      <div class="card-title">Bootstrap Grant + Institutional Validation</div>
+      <div class="card-body">CFTRI, IISc, IIT Madras partnerships. E-Summit '24 winner. IBS Student Innovations recognition. Patent filed.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="links-row">
+      <a href="https://drive.google.com/drive/folders/1kwEsBmp44616KGcmPlGenhjckqEjxSLZ?usp=drive_link" target="_blank" class="link-card">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Research Paper &amp; Client Validation
+      </a>
+      <a href="https://drive.google.com/drive/folders/1zTRn3WbiN7l8Hqn7aQ2jaMkNx2J1GONI?usp=drive_link" target="_blank" class="link-card">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Product Demo Video
+      </a>
+      <a href="Krishi_Era_Ashish_PPT.pdf" download class="link-card">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Full Pitch Deck PDF
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- TEAM -->
+<section class="section" id="team" style="background:#f5f2ea;">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="section-tag">The Team</div>
+    <div class="section-title">Built by Domain Experts</div>
+    <p class="section-desc">A multidisciplinary founding team combining biotech, engineering, and business strategy.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">AS</div>
+        <div class="team-name">Ashish Srinivas</div>
+        <div class="team-role">Co-Founder &amp; CEO</div>
+        <div class="team-bio">Biotech + Business strategy. Led field research in Karnataka. Bootstrapped product to ₹80K grant and 3 institutional partnerships.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">TJ</div>
+        <div class="team-name">Teja J</div>
+        <div class="team-role">Co-Founder &amp; CTO</div>
+        <div class="team-bio">Full-stack engineering. Built the entire AWS + DynamoDB + AI platform. Expert in ESP32 IoT hardware and Gemini/Vertex AI integration.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">SS</div>
+        <div class="team-name">Shamsundar S</div>
+        <div class="team-role">Faculty Coordinator</div>
+        <div class="team-bio">Academic advisor and research supervisor. Facilitated CFTRI, IISc, and IIT Madras institutional partnerships for field validation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- ASK -->
+<section class="section" id="ask">
+  <div class="section-tag">The Ask</div>
+  <div class="section-title">Seed Round — ₹20 Lakhs for 5% Equity</div>
+  <div class="ask-box" style="margin-top:1.5rem;">
+    <div>
+      <div class="ask-amount">₹20 Lakhs</div>
+      <div class="ask-sub">Pre-money valuation: ₹4 Crore<br/>5% equity · Seed Round</div>
+      <div style="margin-top:1.5rem; display:flex; flex-wrap:wrap; gap:0.8rem;">
+        <a href="https://krishi-era-ai-updj.vercel.app/login" target="_blank" style="background:var(--gold); color:var(--green); padding:0.7rem 1.4rem; border-radius:8px; font-weight:700; font-size:0.85rem; text-decoration:none;">Explore Platform</a>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:rgba(255,255,255,0.5); margin-bottom:1rem;">Use of Funds</div>
+      <div class="use-list">
+        <div class="use-row">
+          <div class="use-label">R&amp;D / Biotech</div>
+          <div class="use-bar-wrap"><div class="use-bar" style="width:35%"></div></div>
+          <div class="use-pct">35%</div>
+        </div>
+        <div class="use-row">
+          <div class="use-label">Platform Dev</div>
+          <div class="use-bar-wrap"><div class="use-bar" style="width:25%"></div></div>
+          <div class="use-pct">25%</div>
+        </div>
+        <div class="use-row">
+          <div class="use-label">GTM / Sales</div>
+          <div class="use-bar-wrap"><div class="use-bar" style="width:20%"></div></div>
+          <div class="use-pct">20%</div>
+        </div>
+        <div class="use-row">
+          <div class="use-label">Ops / Pilot</div>
+          <div class="use-bar-wrap"><div class="use-bar" style="width:15%"></div></div>
+          <div class="use-pct">15%</div>
+        </div>
+        <div class="use-row">
+          <div class="use-label">Working Capital</div>
+          <div class="use-bar-wrap"><div class="use-bar" style="width:5%"></div></div>
+          <div class="use-pct">5%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;">
+    <div class="links-row">
+      <a href="https://krishi-era-ai-updj.vercel.app/login" target="_blank" class="link-card">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        Live Platform
+      </a>
+      <a href="https://drive.google.com/drive/folders/1kwEsBmp44616KGcmPlGenhjckqEjxSLZ?usp=drive_link" target="_blank" class="link-card">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Research Paper
+      </a>
+      <a href="https://drive.google.com/drive/folders/1zTRn3WbiN7l8Hqn7aQ2jaMkNx2J1GONI?usp=drive_link" target="_blank" class="link-card">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Product Video
+      </a>
+      <a href="Krishi_Era_Ashish_PPT.pdf" download class="link-card">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download Pitch Deck PDF
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Krishi Era · IIT Bombay Eureka 2025 · &copy; 2025</p>
+  <p style="margin-top:0.4rem;">
+    <a href="https://krishi-era-ai-updj.vercel.app/login" target="_blank">Platform</a> &nbsp;|&nbsp;
+    <a href="https://drive.google.com/drive/folders/1kwEsBmp44616KGcmPlGenhjckqEjxSLZ?usp=drive_link" target="_blank">Research</a> &nbsp;|&nbsp;
+    <a href="https://drive.google.com/drive/folders/1zTRn3WbiN7l8Hqn7aQ2jaMkNx2J1GONI?usp=drive_link" target="_blank">Demo Video</a> &nbsp;|&nbsp;
+    <a href="Krishi_Era_Ashish_PPT.pdf" download>Download PDF</a>
+  </p>
+</footer>
+
+</body>
+</html>
